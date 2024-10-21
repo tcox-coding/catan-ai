@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "ai"
+		},
+		{
+			"path": "catan-game-api"
+		},
+		{
+			"path": "db"
+		}
+	],
+	"settings": {}
+}

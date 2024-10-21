@@ -1,0 +1,12 @@
+[package]
+name = "catan-game-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"
+actix-ws = "0.3.0"
+futures = "0.3.31"
+rand = "0.8.5"
+serde = { version = "1.0.210", features = ["derive", "rc"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
