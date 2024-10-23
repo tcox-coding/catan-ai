@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::game::resource::ResourceCard;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct TradeOffer {
     pub player_offerer_id: usize,
     pub receiving_resources: HashMap<ResourceCard, usize>,

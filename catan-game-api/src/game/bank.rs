@@ -5,9 +5,9 @@ use crate::game::resource::ResourceCard;
 use crate::game::development::DevelopmentCard;
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Bank {
-    resource_cards: HashMap<ResourceCard, i32>,
+    resource_cards: HashMap<ResourceCard, usize>,
     development_cards: [DevelopmentCard; 25],
     development_card_pointer: usize
 }
@@ -62,7 +62,7 @@ impl Bank {
 
     // Returns true if the number of resource cards is able to be drawn, else false.
     // If the resource cards can be drawn, they are removed from the deck.
-    fn drawNumberOfResourceCards(&mut self, resource_card: ResourceCard, amount: i32) -> bool {
+    pub fn drawNumberOfResourceCards(&mut self, resource_card: ResourceCard, amount: usize) -> bool {
         match self.resource_cards.get(&resource_card) {
             Some(num_in_pile) => {
                 if *num_in_pile >= amount {
@@ -77,10 +77,14 @@ impl Bank {
     }
 
     // Replaces the resource cards in the bank.
-    fn replaceResourceCard(&mut self, resource_card: ResourceCard, amount: i32) {
+    pub fn replaceResourceCard(&mut self, resource_card: ResourceCard, amount: usize) {
         match self.resource_cards.get(&resource_card) {
             Some(num_in_pile) => {self.resource_cards.insert(resource_card, num_in_pile + amount);},
             None => {}
         }
+    }
+
+    pub fn amountOfResource(&self, resource: ResourceCard) -> usize {
+        return *self.resource_cards.get(&resource).unwrap();
     }
 }

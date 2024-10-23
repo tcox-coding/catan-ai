@@ -12,12 +12,13 @@ use crate::game::tile::Tile;
 use crate::game::building::Building;
 use crate::game::terrain::Terrain;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Board<'a> {
-    ports: [Arc<Mutex<Port>>; 9],
+    pub ports: [Arc<Mutex<Port>>; 9],
     pub tiles: [Arc<Mutex<Tile<'a>>>; 19],
     pub nodes: Vec<Arc<Mutex<Node<'a>>>>,
     pub edges: Vec<Arc<Mutex<Edge<'a>>>>,
+    pub port_node_mapping: Vec<Arc<Mutex<(usize, usize)>>>,
 }
 
 #[allow(non_snake_case)]
@@ -113,11 +114,24 @@ impl Board<'_> {
             }
         }
 
+        let port_node_mapping: Vec<Arc<Mutex<(usize, usize)>>> = vec![
+            Arc::new(Mutex::new((0, 3))),
+            Arc::new(Mutex::new((1, 5))),
+            Arc::new(Mutex::new((10, 15))),
+            Arc::new(Mutex::new((11, 16))),
+            Arc::new(Mutex::new((26, 32))),
+            Arc::new(Mutex::new((33, 38))),
+            Arc::new(Mutex::new((42, 46))),
+            Arc::new(Mutex::new((47, 51))),
+            Arc::new(Mutex::new((49, 52))),
+        ];
+
         Board {
-            nodes,  //: new_nodes,
-            edges,  //: new_edges,
-            ports,  //: new_ports,
-            tiles,  //: new_tiles
+            nodes,
+            edges,
+            ports,
+            tiles,
+            port_node_mapping
         }
     }
 

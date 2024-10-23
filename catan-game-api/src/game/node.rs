@@ -32,9 +32,4 @@ impl Node<'_> {
             None => false
         }
     }
-
-    // Places the building for the player at the node
-    pub fn placeBuilding(&mut self, building: Building) {
-        self.building = Some(building);
-    }
 }

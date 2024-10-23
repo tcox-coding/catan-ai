@@ -9,14 +9,14 @@ pub enum ResourceCard {
     Lumber,
 }
 
-impl ResourceCard {
-    pub fn value(&self) -> usize {
-        match *self {
-            ResourceCard::Ore => 0,
-            ResourceCard::Wheat => 1,
-            ResourceCard::Sheep => 2,
-            ResourceCard::Brick => 3,
-            ResourceCard::Lumber => 4
-        }
-    }
-}
+// impl ResourceCard {
+//     pub fn value(&self) -> usize {
+//         match *self {
+//             ResourceCard::Ore => 0,
+//             ResourceCard::Wheat => 1,
+//             ResourceCard::Sheep => 2,
+//             ResourceCard::Brick => 3,
+//             ResourceCard::Lumber => 4
+//         }
+//     }
+// }

@@ -9,14 +9,14 @@ pub enum DevelopmentCard {
     VictoryPoint
 }
 
-impl DevelopmentCard {
-    pub fn value(&self) -> usize {
-        match *self {
-            DevelopmentCard::Knight => 0,
-            DevelopmentCard::Monopoly => 1,
-            DevelopmentCard::RoadBuilding => 2,
-            DevelopmentCard::VictoryPoint => 3,
-            DevelopmentCard::YearOfPlenty => 4
-        }
-    }
-}
+// impl DevelopmentCard {
+//     pub fn value(&self) -> usize {
+//         match *self {
+//             DevelopmentCard::Knight => 0,
+//             DevelopmentCard::Monopoly => 1,
+//             DevelopmentCard::RoadBuilding => 2,
+//             DevelopmentCard::VictoryPoint => 3,
+//             DevelopmentCard::YearOfPlenty => 4
+//         }
+//     }
+// }
