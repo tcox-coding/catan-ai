@@ -11,6 +11,7 @@ pub struct Node<'a> {
     pub building: Option<Building>,
     #[serde(skip)]
     pub adjacent_edges: Vec<Arc<Mutex<Edge<'a>>>>,
+    #[serde(skip)]
     pub adjacent_tiles: Vec<Arc<Mutex<Tile<'a>>>>
 }
 
@@ -18,7 +19,7 @@ pub struct Node<'a> {
 impl Node<'_> {
     pub fn new<'a>(position: usize) -> Self {
         Node {
-            position: position,
+            position,
             building: None,
             adjacent_edges: vec![],
             adjacent_tiles: vec![]

@@ -8,6 +8,7 @@ pub struct Tile<'a> {
     pub index: usize,
     pub terrain: Terrain,
     pub chit: i32,
+    #[serde(skip)]
     pub adjacent_nodes: Vec<Arc<Mutex<Node<'a>>>>,
     pub has_robber: bool,
 }

@@ -19,6 +19,12 @@ struct WebSocketCommand {
     action: Option<Action>,
 }
 
+#[derive(Serialize, Deserialize)]
+struct GameWrapper<'a> {
+    last_action_successful: bool,
+    game: Game<'a>,
+}
+
 pub struct MutexWrapper<T: ?Sized>(pub Mutex<T>);
 
 impl<T: ?Sized + Serialize> Serialize for MutexWrapper<T> {
@@ -67,18 +73,28 @@ async fn move_handler(req: HttpRequest, stream: web::Payload) -> Result<HttpResp
                             if ws_command.command == "new_game" {
                                 GAME.0.lock().unwrap().reset();
                                 let game: Game = GAME.0.lock().unwrap().clone();
-                                let game_json = serde_json::to_string(&game).expect("Serialization failed");
-
+                                let game_wrapper = GameWrapper{game, last_action_successful: false};
+                                let game_json = serde_json::to_string(&game_wrapper).expect("Serialization failed.");
                                 // Sends the game and handles the error.
-                                if session.text(game_json).await.is_err() {
+                                if session.text(game_json.clone()).await.is_err() {
                                     // There was an error.
+                                    println!("Error sending message.");
                                 }
                             } else if ws_command.command == "take_action" {
-                                GAME.0.lock().unwrap().takeAction(ws_command.action.unwrap(), GAME.0.lock().unwrap().current_player_id);
+                                let game: Game = GAME.0.lock().unwrap().clone();
+                                let current_player = GAME.0.lock().unwrap().current_player_id;
+                                let successful = GAME.0.lock().unwrap().takeAction(ws_command.action.unwrap(), current_player);
+                                let game_wrapper = GameWrapper{game, last_action_successful: successful};
+                                let game_json = serde_json::to_string(&game_wrapper).expect("Serialization failed.");
+                                // Sends the game and handles the error.
+                                if session.text(game_json.clone()).await.is_err() {
+                                    // There was an error.
+                                    println!("Error sending message.");
+                                }
                             }
                         },
-                        Err(_) => {
-                            todo!();
+                        Err(error) => {
+                            println!("{}", error);
                         }
                     }
                 }

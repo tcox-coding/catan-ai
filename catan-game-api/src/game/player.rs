@@ -116,7 +116,7 @@ impl Player {
         }
     }
 
-    pub fn stealCard(&mut self) -> ResourceCard {
+    pub fn stealCard(&mut self) -> Option<ResourceCard> {
         let mut available_cards = vec![];
         for (resource, amount) in self.resource_cards.clone().into_iter() {
             for _ in 0..amount {
@@ -124,10 +124,14 @@ impl Player {
             }
         }
 
+        if available_cards.len() < 1 {
+            return None;
+        }
+
         let chosen_card = available_cards.choose(&mut rand::thread_rng()).unwrap().clone();
         self.resource_cards.insert(chosen_card.clone(), self.resource_cards.get(&chosen_card).unwrap() - 1);
 
-        chosen_card
+        Some(chosen_card)
     }
 
     pub fn removeAllResourcesFromHand(&mut self, resource: ResourceCard) -> usize {

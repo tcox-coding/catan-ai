@@ -27,10 +27,10 @@ impl Board<'_> {
         let mut rng = rand::thread_rng();
         
         // Initialize nodes and edges.
-        let nodes: Vec<Arc<Mutex<Node<'_>>>> = core::array::from_fn::<_, 72, _>(|index| {
+        let nodes: Vec<Arc<Mutex<Node<'_>>>> = core::array::from_fn::<_, 54, _>(|index| {
             Arc::new(Mutex::new(Node::new(index)))
         }).to_vec();
-        let edges: Vec<Arc<Mutex<Edge<'_>>>> = core::array::from_fn::<_, 54, _>(|index| {
+        let edges: Vec<Arc<Mutex<Edge<'_>>>> = core::array::from_fn::<_, 72, _>(|index| {
             Arc::new(Mutex::new(Edge::new(index)))
         }).to_vec();
         // Map nodes and edges together.
@@ -41,8 +41,9 @@ impl Board<'_> {
                 let node = parts[0];
                 let edge: Vec<&str> = parts[1].split(", ").collect();
                 for e in edge {
-                    let cur_edge = edges[e.parse::<usize>().unwrap()].clone();
-                    let cur_node = nodes[node.parse::<usize>().unwrap()].clone();
+                    // println!("{}", e.parse::<usize>().unwrap() - 1);
+                    let cur_edge = edges[e.parse::<usize>().unwrap() - 1].clone();
+                    let cur_node = nodes[node.parse::<usize>().unwrap() - 1].clone();
                     cur_node.lock().unwrap().adjacent_edges.push(
                         cur_edge.clone()
                     );
@@ -101,8 +102,8 @@ impl Board<'_> {
                 let tile = parts[0];
                 let node: Vec<&str> = parts[1].split(", ").collect();
                 for n in node {
-                    let cur_node = nodes[n.parse::<usize>().unwrap()].clone();
-                    let cur_tile = tiles[tile.parse::<usize>().unwrap()].clone();
+                    let cur_node = nodes[n.parse::<usize>().unwrap() - 1].clone();
+                    let cur_tile = tiles[tile.parse::<usize>().unwrap() - 1].clone();
                     cur_tile.lock().unwrap().adjacent_nodes.push(
                         cur_node.clone()
                     );
@@ -125,7 +126,7 @@ impl Board<'_> {
             Arc::new(Mutex::new((47, 51))),
             Arc::new(Mutex::new((49, 52))),
         ];
-
+        // println!("Successfully created new board.");
         Board {
             nodes,
             edges,
@@ -236,21 +237,27 @@ impl Board<'_> {
     pub fn placeInitialSettlement(&self, settlement: Building) -> bool {
         match settlement {
             Building::Settlement(position, _) => {
-                let mut current_node = self.nodes[position].lock().unwrap();
-                if current_node.hasBuilding() {
+                if position > 53 {
+                    return false;
+                }
+                let current_node = &self.nodes[position];
+                if current_node.lock().unwrap().hasBuilding() {
                     return false;
                 }
 
                 // Check to make sure that settlement is at least 2 away from another settlement.
-                for edge in current_node.adjacent_edges.clone() {
+                for edge in current_node.lock().unwrap().adjacent_edges.clone() {
                     for node in edge.lock().as_ref().unwrap().adjacent_nodes.clone() {
+                        if node.try_lock().is_err() {
+                            continue;
+                        }
                         if node.lock().unwrap().hasBuilding() {
                             return false;
                         }
                     }
                 }
 
-                current_node.building = Some(settlement);
+                current_node.lock().unwrap().building = Some(settlement);
                 return true;
             },
             _ => { return false; }

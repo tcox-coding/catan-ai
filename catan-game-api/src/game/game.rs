@@ -28,6 +28,8 @@ pub struct Game<'a> {
     previous_dice_roll: usize,
     players_accepted_trade_offer: [usize; 4],
     game_ended: bool,
+    last_turn_successful: bool,
+    last_placement_was_settlement: bool,
 }
 
 #[allow(non_snake_case)]
@@ -54,7 +56,9 @@ impl Game<'_> {
             rolled_dice_this_turn: false,
             previous_dice_roll: 0,
             players_accepted_trade_offer: [0, 0, 0, 0],
-            game_ended: false
+            game_ended: false,
+            last_turn_successful: false,
+            last_placement_was_settlement: false
         }
     }
 
@@ -80,6 +84,8 @@ impl Game<'_> {
         self.previous_dice_roll = 0;
         self.players_accepted_trade_offer = [0, 0, 0, 0];
         self.game_ended = false;
+        self.last_turn_successful = false;
+        self.last_placement_was_settlement = false;
 
     }
 
@@ -257,14 +263,18 @@ impl Game<'_> {
 
                 let mut has_node_owned_by_robbed_player = false;
                 for node in self.board.tiles[action.action_metadata[0]].lock().unwrap().adjacent_nodes.clone() {
-                    match node.lock().unwrap().building.as_mut().unwrap() {
-                        Building::Settlement(_, player) => {
-                            has_node_owned_by_robbed_player |= *player == action.action_metadata[1];
-                        },
-                        Building::City(_, player) => {
-                            has_node_owned_by_robbed_player |= *player == action.action_metadata[1];
-                        },
-                        _ => { continue; }
+                    let mut node_n = node.lock().unwrap();
+                    let node_building = node_n.building.as_mut();
+                    if node_building.is_some() {
+                        match node_building.unwrap() {
+                            Building::Settlement(_, player) => {
+                                has_node_owned_by_robbed_player |= *player == action.action_metadata[1];
+                            },
+                            Building::City(_, player) => {
+                                has_node_owned_by_robbed_player |= *player == action.action_metadata[1];
+                            },
+                            _ => { continue; }
+                        }
                     }
                 }
 
@@ -275,7 +285,10 @@ impl Game<'_> {
                 // Set the robber to true on the tile and steal a card from the given player.
                 self.board.tiles[action.action_metadata[0]].lock().unwrap().has_robber = true;
                 let stolen_resource = self.players[action.action_metadata[1]].stealCard();
-                self.players[player_id].addResourceCards(HashMap::from([(stolen_resource, 1)]));
+                if stolen_resource.is_none() {
+                    return true;
+                }
+                self.players[player_id].addResourceCards(HashMap::from([(stolen_resource.unwrap(), 1)]));
                 return true;
             },
             ActionType::PlayCity => {
@@ -457,7 +470,7 @@ impl Game<'_> {
         }
 
         // Check if the receiving resources add to greater than one; if so, return false.
-        if action.action_metadata[5..11].iter().fold(0, |acc, x| x + acc) > 1 {
+        if action.action_metadata[5..10].iter().fold(0, |acc, x| x + acc) > 1 {
             return false;
         }
 
@@ -1033,7 +1046,11 @@ impl Game<'_> {
                 // Set the robber to true on the tile and steal a card from the given player.
                 self.board.tiles[action.action_metadata[0]].lock().unwrap().has_robber = true;
                 let stolen_resource = self.players[action.action_metadata[1]].stealCard();
-                self.players[player_id].addResourceCards(HashMap::from([(stolen_resource, 1)]));
+
+                if !stolen_resource.is_none() {
+                    self.players[player_id].addResourceCards(HashMap::from([(stolen_resource.unwrap(), 1)]));
+                }
+
                 self.players[player_id].num_knights_played += 1;
 
                 // Check if the player has largest army.
@@ -1148,19 +1165,27 @@ impl Game<'_> {
     fn handleInitialTurn(&mut self, action: Action, player_id: usize) -> bool {
         match action.action_type {
             ActionType::PlaySettlement => {
+                if self.last_placement_was_settlement {
+                    return false;
+                }
                 let new_settlement = Building::Settlement(
                     action.action_metadata[0],
                     player_id
                 );
                 if self.board.placeInitialSettlement(new_settlement) {
                     self.players[player_id].num_unplaced_settlements -= 1;
+                    self.players[player_id].victory_points += 1;
                     self.players[player_id].settlement_placements.push(action.action_metadata[0]);
+                    self.last_placement_was_settlement = true;
                     return true;
                 } else {
                     return false;
                 }
             },
             ActionType::PlayRoad => {
+                if !self.last_placement_was_settlement {
+                    return false;
+                }
                 let new_road = Building::Settlement(
                     action.action_metadata[0],
                     player_id
@@ -1169,6 +1194,7 @@ impl Game<'_> {
                     self.players[player_id].num_unplaced_roads -= 1;
                     self.players[player_id].road_placements.push(action.action_metadata[0]);
                     self.current_player_id = (self.current_player_id + 1) % 4;
+                    self.last_placement_was_settlement = true;
                     return true;
                 } else { 
                     return false;

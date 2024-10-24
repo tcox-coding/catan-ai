@@ -1,0 +1,882 @@
+{
+    "last_action_successful": true,
+    "game": {
+        "players": [
+            {
+                "id": 0,
+                "num_unplaced_cities": 4,
+                "num_unplaced_settlements": 5,
+                "num_unplaced_roads": 15,
+                "resource_cards": {
+                    "Lumber": 0,
+                    "Sheep": 0,
+                    "Wheat": 0,
+                    "Ore": 0,
+                    "Brick": 0
+                },
+                "development_cards": {
+                    "Knight": 0,
+                    "RoadBuilding": 0,
+                    "Monopoly": 0,
+                    "VictoryPoint": 0,
+                    "YearOfPlenty": 0
+                },
+                "development_cards_drawn_this_turn": {
+                    "Knight": 0,
+                    "RoadBuilding": 0,
+                    "Monopoly": 0,
+                    "VictoryPoint": 0,
+                    "YearOfPlenty": 0
+                },
+                "longest_road": false,
+                "largest_army": false,
+                "settlement_placements": [],
+                "road_placements": [],
+                "city_placements": [],
+                "action_queue": [],
+                "victory_points": 0,
+                "num_knights_played": 0,
+                "longest_road_length": 0
+            },
+            {
+                "id": 1,
+                "num_unplaced_cities": 4,
+                "num_unplaced_settlements": 5,
+                "num_unplaced_roads": 15,
+                "resource_cards": {
+                    "Wheat": 0,
+                    "Brick": 0,
+                    "Lumber": 0,
+                    "Sheep": 0,
+                    "Ore": 0
+                },
+                "development_cards": {
+                    "Monopoly": 0,
+                    "VictoryPoint": 0,
+                    "RoadBuilding": 0,
+                    "YearOfPlenty": 0,
+                    "Knight": 0
+                },
+                "development_cards_drawn_this_turn": {
+                    "Monopoly": 0,
+                    "VictoryPoint": 0,
+                    "RoadBuilding": 0,
+                    "YearOfPlenty": 0,
+                    "Knight": 0
+                },
+                "longest_road": false,
+                "largest_army": false,
+                "settlement_placements": [],
+                "road_placements": [],
+                "city_placements": [],
+                "action_queue": [],
+                "victory_points": 0,
+                "num_knights_played": 0,
+                "longest_road_length": 0
+            },
+            {
+                "id": 2,
+                "num_unplaced_cities": 4,
+                "num_unplaced_settlements": 5,
+                "num_unplaced_roads": 15,
+                "resource_cards": {
+                    "Sheep": 0,
+                    "Wheat": 0,
+                    "Brick": 0,
+                    "Ore": 0,
+                    "Lumber": 0
+                },
+                "development_cards": {
+                    "VictoryPoint": 0,
+                    "RoadBuilding": 0,
+                    "Knight": 0,
+                    "Monopoly": 0,
+                    "YearOfPlenty": 0
+                },
+                "development_cards_drawn_this_turn": {
+                    "VictoryPoint": 0,
+                    "RoadBuilding": 0,
+                    "Knight": 0,
+                    "Monopoly": 0,
+                    "YearOfPlenty": 0
+                },
+                "longest_road": false,
+                "largest_army": false,
+                "settlement_placements": [],
+                "road_placements": [],
+                "city_placements": [],
+                "action_queue": [],
+                "victory_points": 0,
+                "num_knights_played": 0,
+                "longest_road_length": 0
+            },
+            {
+                "id": 3,
+                "num_unplaced_cities": 4,
+                "num_unplaced_settlements": 5,
+                "num_unplaced_roads": 15,
+                "resource_cards": {
+                    "Wheat": 0,
+                    "Brick": 0,
+                    "Sheep": 0,
+                    "Ore": 0,
+                    "Lumber": 0
+                },
+                "development_cards": {
+                    "VictoryPoint": 0,
+                    "YearOfPlenty": 0,
+                    "RoadBuilding": 0,
+                    "Knight": 0,
+                    "Monopoly": 0
+                },
+                "development_cards_drawn_this_turn": {
+                    "VictoryPoint": 0,
+                    "YearOfPlenty": 0,
+                    "RoadBuilding": 0,
+                    "Knight": 0,
+                    "Monopoly": 0
+                },
+                "longest_road": false,
+                "largest_army": false,
+                "settlement_placements": [],
+                "road_placements": [],
+                "city_placements": [],
+                "action_queue": [],
+                "victory_points": 0,
+                "num_knights_played": 0,
+                "longest_road_length": 0
+            }
+        ],
+        "board": {
+            "ports": [
+                "Ore",
+                "ThreeToOne",
+                "Sheep",
+                "Lumber",
+                "ThreeToOne",
+                "ThreeToOne",
+                "Brick",
+                "Wheat",
+                "ThreeToOne"
+            ],
+            "tiles": [
+                {
+                    "index": 0,
+                    "terrain": "Desert",
+                    "chit": 0,
+                    "has_robber": true
+                },
+                {
+                    "index": 1,
+                    "terrain": "Hills",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 2,
+                    "terrain": "Fields",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 3,
+                    "terrain": "Mountains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 4,
+                    "terrain": "Forest",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 5,
+                    "terrain": "Plains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 6,
+                    "terrain": "Plains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 7,
+                    "terrain": "Plains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 8,
+                    "terrain": "Forest",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 9,
+                    "terrain": "Plains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 10,
+                    "terrain": "Hills",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 11,
+                    "terrain": "Fields",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 12,
+                    "terrain": "Mountains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 13,
+                    "terrain": "Hills",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 14,
+                    "terrain": "Forest",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 15,
+                    "terrain": "Fields",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 16,
+                    "terrain": "Fields",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 17,
+                    "terrain": "Mountains",
+                    "chit": 0,
+                    "has_robber": false
+                },
+                {
+                    "index": 18,
+                    "terrain": "Forest",
+                    "chit": 0,
+                    "has_robber": false
+                }
+            ],
+            "nodes": [
+                {
+                    "position": 0,
+                    "building": {
+                        "Settlement": [
+                            0,
+                            0
+                        ]
+                    }
+                },
+                {
+                    "position": 1,
+                    "building": null
+                },
+                {
+                    "position": 2,
+                    "building": null
+                },
+                {
+                    "position": 3,
+                    "building": null
+                },
+                {
+                    "position": 4,
+                    "building": null
+                },
+                {
+                    "position": 5,
+                    "building": null
+                },
+                {
+                    "position": 6,
+                    "building": null
+                },
+                {
+                    "position": 7,
+                    "building": null
+                },
+                {
+                    "position": 8,
+                    "building": null
+                },
+                {
+                    "position": 9,
+                    "building": null
+                },
+                {
+                    "position": 10,
+                    "building": null
+                },
+                {
+                    "position": 11,
+                    "building": null
+                },
+                {
+                    "position": 12,
+                    "building": null
+                },
+                {
+                    "position": 13,
+                    "building": null
+                },
+                {
+                    "position": 14,
+                    "building": null
+                },
+                {
+                    "position": 15,
+                    "building": null
+                },
+                {
+                    "position": 16,
+                    "building": null
+                },
+                {
+                    "position": 17,
+                    "building": null
+                },
+                {
+                    "position": 18,
+                    "building": null
+                },
+                {
+                    "position": 19,
+                    "building": null
+                },
+                {
+                    "position": 20,
+                    "building": null
+                },
+                {
+                    "position": 21,
+                    "building": null
+                },
+                {
+                    "position": 22,
+                    "building": null
+                },
+                {
+                    "position": 23,
+                    "building": null
+                },
+                {
+                    "position": 24,
+                    "building": null
+                },
+                {
+                    "position": 25,
+                    "building": null
+                },
+                {
+                    "position": 26,
+                    "building": null
+                },
+                {
+                    "position": 27,
+                    "building": null
+                },
+                {
+                    "position": 28,
+                    "building": null
+                },
+                {
+                    "position": 29,
+                    "building": null
+                },
+                {
+                    "position": 30,
+                    "building": null
+                },
+                {
+                    "position": 31,
+                    "building": null
+                },
+                {
+                    "position": 32,
+                    "building": null
+                },
+                {
+                    "position": 33,
+                    "building": null
+                },
+                {
+                    "position": 34,
+                    "building": null
+                },
+                {
+                    "position": 35,
+                    "building": null
+                },
+                {
+                    "position": 36,
+                    "building": null
+                },
+                {
+                    "position": 37,
+                    "building": null
+                },
+                {
+                    "position": 38,
+                    "building": null
+                },
+                {
+                    "position": 39,
+                    "building": null
+                },
+                {
+                    "position": 40,
+                    "building": null
+                },
+                {
+                    "position": 41,
+                    "building": null
+                },
+                {
+                    "position": 42,
+                    "building": null
+                },
+                {
+                    "position": 43,
+                    "building": null
+                },
+                {
+                    "position": 44,
+                    "building": null
+                },
+                {
+                    "position": 45,
+                    "building": null
+                },
+                {
+                    "position": 46,
+                    "building": null
+                },
+                {
+                    "position": 47,
+                    "building": null
+                },
+                {
+                    "position": 48,
+                    "building": null
+                },
+                {
+                    "position": 49,
+                    "building": null
+                },
+                {
+                    "position": 50,
+                    "building": null
+                },
+                {
+                    "position": 51,
+                    "building": null
+                },
+                {
+                    "position": 52,
+                    "building": null
+                },
+                {
+                    "position": 53,
+                    "building": null
+                }
+            ],
+            "edges": [
+                {
+                    "position": 0,
+                    "building": null
+                },
+                {
+                    "position": 1,
+                    "building": null
+                },
+                {
+                    "position": 2,
+                    "building": null
+                },
+                {
+                    "position": 3,
+                    "building": null
+                },
+                {
+                    "position": 4,
+                    "building": null
+                },
+                {
+                    "position": 5,
+                    "building": null
+                },
+                {
+                    "position": 6,
+                    "building": null
+                },
+                {
+                    "position": 7,
+                    "building": null
+                },
+                {
+                    "position": 8,
+                    "building": null
+                },
+                {
+                    "position": 9,
+                    "building": null
+                },
+                {
+                    "position": 10,
+                    "building": null
+                },
+                {
+                    "position": 11,
+                    "building": null
+                },
+                {
+                    "position": 12,
+                    "building": null
+                },
+                {
+                    "position": 13,
+                    "building": null
+                },
+                {
+                    "position": 14,
+                    "building": null
+                },
+                {
+                    "position": 15,
+                    "building": null
+                },
+                {
+                    "position": 16,
+                    "building": null
+                },
+                {
+                    "position": 17,
+                    "building": null
+                },
+                {
+                    "position": 18,
+                    "building": null
+                },
+                {
+                    "position": 19,
+                    "building": null
+                },
+                {
+                    "position": 20,
+                    "building": null
+                },
+                {
+                    "position": 21,
+                    "building": null
+                },
+                {
+                    "position": 22,
+                    "building": null
+                },
+                {
+                    "position": 23,
+                    "building": null
+                },
+                {
+                    "position": 24,
+                    "building": null
+                },
+                {
+                    "position": 25,
+                    "building": null
+                },
+                {
+                    "position": 26,
+                    "building": null
+                },
+                {
+                    "position": 27,
+                    "building": null
+                },
+                {
+                    "position": 28,
+                    "building": null
+                },
+                {
+                    "position": 29,
+                    "building": null
+                },
+                {
+                    "position": 30,
+                    "building": null
+                },
+                {
+                    "position": 31,
+                    "building": null
+                },
+                {
+                    "position": 32,
+                    "building": null
+                },
+                {
+                    "position": 33,
+                    "building": null
+                },
+                {
+                    "position": 34,
+                    "building": null
+                },
+                {
+                    "position": 35,
+                    "building": null
+                },
+                {
+                    "position": 36,
+                    "building": null
+                },
+                {
+                    "position": 37,
+                    "building": null
+                },
+                {
+                    "position": 38,
+                    "building": null
+                },
+                {
+                    "position": 39,
+                    "building": null
+                },
+                {
+                    "position": 40,
+                    "building": null
+                },
+                {
+                    "position": 41,
+                    "building": null
+                },
+                {
+                    "position": 42,
+                    "building": null
+                },
+                {
+                    "position": 43,
+                    "building": null
+                },
+                {
+                    "position": 44,
+                    "building": null
+                },
+                {
+                    "position": 45,
+                    "building": null
+                },
+                {
+                    "position": 46,
+                    "building": null
+                },
+                {
+                    "position": 47,
+                    "building": null
+                },
+                {
+                    "position": 48,
+                    "building": null
+                },
+                {
+                    "position": 49,
+                    "building": null
+                },
+                {
+                    "position": 50,
+                    "building": null
+                },
+                {
+                    "position": 51,
+                    "building": null
+                },
+                {
+                    "position": 52,
+                    "building": null
+                },
+                {
+                    "position": 53,
+                    "building": null
+                },
+                {
+                    "position": 54,
+                    "building": null
+                },
+                {
+                    "position": 55,
+                    "building": null
+                },
+                {
+                    "position": 56,
+                    "building": null
+                },
+                {
+                    "position": 57,
+                    "building": null
+                },
+                {
+                    "position": 58,
+                    "building": null
+                },
+                {
+                    "position": 59,
+                    "building": null
+                },
+                {
+                    "position": 60,
+                    "building": null
+                },
+                {
+                    "position": 61,
+                    "building": null
+                },
+                {
+                    "position": 62,
+                    "building": null
+                },
+                {
+                    "position": 63,
+                    "building": null
+                },
+                {
+                    "position": 64,
+                    "building": null
+                },
+                {
+                    "position": 65,
+                    "building": null
+                },
+                {
+                    "position": 66,
+                    "building": null
+                },
+                {
+                    "position": 67,
+                    "building": null
+                },
+                {
+                    "position": 68,
+                    "building": null
+                },
+                {
+                    "position": 69,
+                    "building": null
+                },
+                {
+                    "position": 70,
+                    "building": null
+                },
+                {
+                    "position": 71,
+                    "building": null
+                }
+            ],
+            "port_node_mapping": [
+                [
+                    0,
+                    3
+                ],
+                [
+                    1,
+                    5
+                ],
+                [
+                    10,
+                    15
+                ],
+                [
+                    11,
+                    16
+                ],
+                [
+                    26,
+                    32
+                ],
+                [
+                    33,
+                    38
+                ],
+                [
+                    42,
+                    46
+                ],
+                [
+                    47,
+                    51
+                ],
+                [
+                    49,
+                    52
+                ]
+            ]
+        },
+        "bank": {
+            "resource_cards": {
+                "Sheep": 19,
+                "Lumber": 19,
+                "Wheat": 19,
+                "Brick": 19,
+                "Ore": 19
+            },
+            "development_cards": [
+                "Knight",
+                "VictoryPoint",
+                "Knight",
+                "RoadBuilding",
+                "YearOfPlenty",
+                "RoadBuilding",
+                "Knight",
+                "Monopoly",
+                "Knight",
+                "VictoryPoint",
+                "RoadBuilding",
+                "Knight",
+                "VictoryPoint",
+                "VictoryPoint",
+                "Monopoly",
+                "Knight",
+                "Knight",
+                "YearOfPlenty",
+                "Knight",
+                "Knight",
+                "VictoryPoint",
+                "Knight",
+                "Knight",
+                "Knight",
+                "Knight"
+            ],
+            "development_card_pointer": 0
+        },
+        "turn_number": 0,
+        "current_player_id": 0,
+        "current_trade_offer": null,
+        "rolled_dice_this_turn": false,
+        "previous_dice_roll": 0,
+        "players_accepted_trade_offer": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "game_ended": false,
+        "last_turn_successful": false,
+        "last_placement_was_settlement": false
+    }
+}

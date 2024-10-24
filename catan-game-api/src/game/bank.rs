@@ -43,6 +43,7 @@ impl Bank {
         let mut rng = rand::thread_rng();
         development_cards.shuffle(&mut rng);
 
+        // println!("Successfully created new bank.");
         Bank {
             development_card_pointer,
             resource_cards,
